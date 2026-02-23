@@ -121,7 +121,7 @@ function AppRoutes() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/sportlearning">
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
