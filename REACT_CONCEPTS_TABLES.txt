@@ -1,0 +1,296 @@
+============================================
+REACT CONCEPTS - LAB EVALUATION TABLES
+Sports Learning Platform for Autism Kids
+============================================
+
+
+========================================================================
+TABLE 1: BEFORE THE FORMS (Existing Code - Lab 1 Concepts)
+========================================================================
+
++----------------------+--------------------------------------------------+
+| Concept              | Code Proof/Screenshot                            |
++----------------------+--------------------------------------------------+
+| Function Component   | File: Home.jsx (Lines 7-94)                      |
+|                      |                                                  |
+|                      | function Home() {                                |
+|                      |     const [sports, setSports] = useState([]);    |
+|                      |     const [loading, setLoading] = useState(true);|
+|                      |     const { user } = useAuth();                  |
+|                      |                                                  |
+|                      |     return (                                     |
+|                      |         <div className="home-page">              |
+|                      |             {/* JSX content */}                  |
+|                      |         </div>                                   |
+|                      |     );                                           |
+|                      | }                                                |
+|                      | export default Home;                             |
++----------------------+--------------------------------------------------+
+| Class Component      | NOT USED BEFORE FORMS                            |
+|                      | (Only Function Components were used)             |
++----------------------+--------------------------------------------------+
+| Event                | File: Login.jsx (Lines 33-46, 68, 80)            |
+|                      |                                                  |
+|                      | const handleSubmit = async (e) => {              |
+|                      |     e.preventDefault();                          |
+|                      |     setError('');                                |
+|                      |     setLoading(true);                            |
+|                      |     try {                                        |
+|                      |         await login(email, password);            |
+|                      |         navigate('/');                           |
+|                      |     } catch (err) {                              |
+|                      |         setError(err.message);                   |
+|                      |     }                                            |
+|                      | };                                               |
+|                      |                                                  |
+|                      | // JSX Event Binding:                            |
+|                      | <form onSubmit={handleSubmit}>                   |
+|                      | <input onChange={(e) => setEmail(e.target.value)}|
++----------------------+--------------------------------------------------+
+| State Management     | File: Login.jsx (Lines 8-12)                     |
+|                      |                                                  |
+|                      | const [email, setEmail] = useState('');          |
+|                      | const [password, setPassword] = useState('');    |
+|                      | const [error, setError] = useState('');          |
+|                      | const [loading, setLoading] = useState(false);   |
+|                      | const [fact, setFact] = useState(null);          |
++----------------------+--------------------------------------------------+
+| Stateless Component  | File: Navbar.jsx (Lines 4-52)                    |
+|                      |                                                  |
+|                      | function Navbar() {                              |
+|                      |     const { user, logout } = useAuth();          |
+|                      |     // No internal complex state, uses context   |
+|                      |     return (                                     |
+|                      |         <nav className="navbar">                 |
+|                      |             <Link to="/">Home</Link>             |
+|                      |             <Link to="/quiz">Quiz</Link>         |
+|                      |         </nav>                                   |
+|                      |     );                                           |
+|                      | }                                                |
++----------------------+--------------------------------------------------+
+| Forms                | File: Login.jsx (Lines 61-89)                    |
+|                      |                                                  |
+|                      | <form onSubmit={handleSubmit}>                   |
+|                      |     <input                                       |
+|                      |         type="email"                             |
+|                      |         value={email}                            |
+|                      |         onChange={(e) => setEmail(e.target.value)|
+|                      |         placeholder="Enter your email"           |
+|                      |     />                                           |
+|                      |     <input                                       |
+|                      |         type="password"                          |
+|                      |         value={password}                         |
+|                      |         onChange={(e) => setPassword(e.target.value)|
+|                      |     />                                           |
+|                      |     <button type="submit">Sign In</button>       |
+|                      | </form>                                          |
++----------------------+--------------------------------------------------+
+
+
+
+========================================================================
+TABLE 2: AFTER THE FORMS (New GoalTracker.jsx - Extended Concepts)
+========================================================================
+
++----------------------+--------------------------------------------------+
+| Concept              | Code Proof/Screenshot                            |
++----------------------+--------------------------------------------------+
+| Function Component   | File: GoalTracker.jsx (Lines 4-14)               |
+|                      |                                                  |
+|                      | function ProgressBar({ progress, color }) {      |
+|                      |     return (                                     |
+|                      |         <div className="goal-progress-bar">      |
+|                      |             <div                                 |
+|                      |                 className="goal-progress-fill"   |
+|                      |                 style={{                         |
+|                      |                     width: `${progress}%`,       |
+|                      |                     background: color            |
+|                      |                 }}                               |
+|                      |             />                                   |
+|                      |             <span>{progress}%</span>             |
+|                      |         </div>                                   |
+|                      |     );                                           |
+|                      | }                                                |
++----------------------+--------------------------------------------------+
+| Class Component      | File: GoalTracker.jsx (Lines 16-42)              |
+|                      |                                                  |
+|                      | class GoalStats extends React.Component {        |
+|                      |     render() {                                   |
+|                      |         const { totalGoals, completedGoals }     |
+|                      |             = this.props;                        |
+|                      |         return (                                 |
+|                      |             <div className="goal-stats">         |
+|                      |                 <div className="stat-card">      |
+|                      |                     <span>{totalGoals}</span>    |
+|                      |                     <span>Total Goals</span>     |
+|                      |                 </div>                           |
+|                      |                 <div className="stat-card">      |
+|                      |                     <span>{completedGoals}</span>|
+|                      |                     <span>Completed</span>       |
+|                      |                 </div>                           |
+|                      |             </div>                               |
+|                      |         );                                       |
+|                      |     }                                            |
+|                      | }                                                |
++----------------------+--------------------------------------------------+
+| Event                | File: GoalTracker.jsx (Lines 72-88, 97-120)      |
+|                      |                                                  |
+|                      | // Event Handler - Input Change                  |
+|                      | const handleInputChange = (event) => {           |
+|                      |     const { name, value } = event.target;        |
+|                      |     setFormData(prevData => ({                   |
+|                      |         ...prevData,                             |
+|                      |         [name]: value                            |
+|                      |     }));                                         |
+|                      | };                                               |
+|                      |                                                  |
+|                      | // Event Handler - Form Submit                   |
+|                      | const handleSubmit = (event) => {                |
+|                      |     event.preventDefault();                      |
+|                      |     if (validateForm()) {                        |
+|                      |         setGoals(prev => [...prev, newGoal]);    |
+|                      |         setShowSuccess(true);                    |
+|                      |     }                                            |
+|                      | };                                               |
+|                      |                                                  |
+|                      | // JSX Events:                                   |
+|                      | <form onSubmit={handleSubmit}>                   |
+|                      | <input onChange={handleInputChange} />           |
+|                      | <button onClick={() => handlePriorityClick('high')}|
++----------------------+--------------------------------------------------+
+| State Management     | File: GoalTracker.jsx (Lines 47-58)              |
+|                      |                                                  |
+|                      | const [formData, setFormData] = useState({       |
+|                      |     goalTitle: '',                               |
+|                      |     sport: '',                                   |
+|                      |     targetDate: '',                              |
+|                      |     difficulty: '',                              |
+|                      |     description: '',                             |
+|                      |     priority: 'medium'                           |
+|                      | });                                              |
+|                      |                                                  |
+|                      | const [goals, setGoals] = useState([]);          |
+|                      | const [errors, setErrors] = useState({});        |
+|                      | const [showSuccess, setShowSuccess] = useState(false);|
++----------------------+--------------------------------------------------+
+| Stateless Component  | File: GoalTracker.jsx (Lines 4-14)               |
+|                      |                                                  |
+|                      | // Stateless - No internal state, only props     |
+|                      | function ProgressBar({ progress, color }) {      |
+|                      |     return (                                     |
+|                      |         <div className="goal-progress-bar">      |
+|                      |             <div                                 |
+|                      |                 className="goal-progress-fill"   |
+|                      |                 style={{ width: `${progress}%` }}|
+|                      |             />                                   |
+|                      |             <span>{progress}%</span>             |
+|                      |         </div>                                   |
+|                      |     );                                           |
+|                      | }                                                |
++----------------------+--------------------------------------------------+
+| Forms                | File: GoalTracker.jsx (Lines 155-290)            |
+|                      |                                                  |
+|                      | <form className="goal-form" onSubmit={handleSubmit}>|
+|                      |                                                  |
+|                      |   {/* Text Input */}                             |
+|                      |   <input type="text" name="goalTitle"            |
+|                      |       value={formData.goalTitle}                 |
+|                      |       onChange={handleInputChange} />            |
+|                      |                                                  |
+|                      |   {/* Select Dropdown */}                        |
+|                      |   <select name="sport" value={formData.sport}    |
+|                      |       onChange={handleInputChange}>              |
+|                      |       <option value="">Choose a sport...</option>|
+|                      |       <option value="tennis">Tennis</option>     |
+|                      |   </select>                                      |
+|                      |                                                  |
+|                      |   {/* Date Input */}                             |
+|                      |   <input type="date" name="targetDate"           |
+|                      |       value={formData.targetDate}                |
+|                      |       onChange={handleInputChange} />            |
+|                      |                                                  |
+|                      |   {/* Radio Buttons */}                          |
+|                      |   <input type="radio" name="difficulty"          |
+|                      |       value="beginner"                           |
+|                      |       checked={formData.difficulty === 'beginner'}|
+|                      |       onChange={handleInputChange} />            |
+|                      |                                                  |
+|                      |   {/* Textarea */}                               |
+|                      |   <textarea name="description"                   |
+|                      |       value={formData.description}               |
+|                      |       onChange={handleInputChange} />            |
+|                      |                                                  |
+|                      |   {/* Range Slider */}                           |
+|                      |   <input type="range" min="0" max="100"          |
+|                      |       value={goal.progress}                      |
+|                      |       onChange={(e) => handleProgressUpdate(...)}/>|
+|                      |                                                  |
+|                      |   {/* Submit Button */}                          |
+|                      |   <button type="submit">Create Goal</button>     |
+|                      |                                                  |
+|                      | </form>                                          |
++----------------------+--------------------------------------------------+
+
+
+
+========================================================================
+BONUS: HOOKS AND ROUTING (Common to Both)
+========================================================================
+
++----------------------+--------------------------------------------------+
+| Concept              | Code Proof/Screenshot                            |
++----------------------+--------------------------------------------------+
+| useState Hook        | File: GoalTracker.jsx (Line 1, 47-58)            |
+|                      |                                                  |
+|                      | import React, { useState } from 'react';         |
+|                      | const [formData, setFormData] = useState({...}); |
+|                      | const [goals, setGoals] = useState([]);          |
++----------------------+--------------------------------------------------+
+| useEffect Hook       | File: Login.jsx (Lines 16-31)                    |
+|                      |                                                  |
+|                      | useEffect(() => {                                |
+|                      |     if (user) {                                  |
+|                      |         navigate('/');                           |
+|                      |     }                                            |
+|                      | }, [user, navigate]);                            |
+|                      |                                                  |
+|                      | useEffect(() => {                                |
+|                      |     fetch(`${API_URL}/facts/${randomSport}`)     |
+|                      |         .then(res => res.json())                 |
+|                      |         .then(data => setFact(data));            |
+|                      | }, []);                                          |
++----------------------+--------------------------------------------------+
+| useContext Hook      | File: AuthContext.jsx (Lines 110-116)            |
+|                      |                                                  |
+|                      | export function useAuth() {                      |
+|                      |     const context = useContext(AuthContext);     |
+|                      |     if (!context) {                              |
+|                      |         throw new Error('useAuth must be used    |
+|                      |             within an AuthProvider');            |
+|                      |     }                                            |
+|                      |     return context;                              |
+|                      | }                                                |
++----------------------+--------------------------------------------------+
+| Routing              | File: App.jsx (Lines 36-104)                     |
+|                      |                                                  |
+|                      | import { BrowserRouter as Router, Routes, Route }|
+|                      |     from 'react-router-dom';                     |
+|                      |                                                  |
+|                      | <Router>                                         |
+|                      |   <Routes>                                       |
+|                      |     <Route path="/login" element={<Login />} />  |
+|                      |     <Route path="/" element={<Home />} />        |
+|                      |     <Route path="/quiz" element={<Quiz />} />    |
+|                      |     <Route path="/goals" element={<GoalTracker />}|
+|                      |   </Routes>                                      |
+|                      | </Router>                                        |
++----------------------+--------------------------------------------------+
+| Link Navigation      | File: Navbar.jsx (Lines 25-36)                   |
+|                      |                                                  |
+|                      | import { Link } from 'react-router-dom';         |
+|                      |                                                  |
+|                      | <Link to="/" className="navbar-link">Home</Link> |
+|                      | <Link to="/quiz" className="navbar-link">Quiz</Link>|
+|                      | <Link to="/leaderboard">Leaderboard</Link>       |
+|                      | <Link to="/goals">Goals</Link>                   |
++----------------------+--------------------------------------------------+

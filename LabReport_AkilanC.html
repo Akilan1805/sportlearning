@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Report - GrowthGarden Portal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .student-details {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+
+        .student-details p {
+            margin: 5px 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .highlight-box {
+            background: #fffde7;
+            border-left: 5px solid #fbc02d;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .url-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="student-details">
+            <p>NAME: Akilan C</p>
+            <p>ROLL NO: CB.SC.U4CSE23607</p>
+        </div>
+
+        <h1>Lab Report: GrowthGarden Achievement Refinement</h1>
+
+        <h2>1. About the Use Case</h2>
+        <p><strong>Why this portal is required for autism kids:</strong> Children on the autism spectrum often possess
+            strong visual-spatial processing abilities but struggle with abstract numerical concepts and traditional
+            text-heavy instruction. This portal provides a sensory-friendly, highly visual environment that translates
+            abstract addition into tangible "growth" within a garden.</p>
+
+        <p><strong>Challenges addressed:</strong>
+        <ul>
+            <li><strong>Abstract Thinking:</strong> Translating numbers into physical objects (flowers, trees) helps
+                bypass abstract processing hurdles.</li>
+            <li><strong>Executive Functioning:</strong> Breaking down math into "watering" and "sunlight" tasks provides
+                clear, sequential structure.</li>
+            <li><strong>Fine Motor/Coordination:</strong> Drag-and-drop and click-to-count operations provide tactile
+                feedback and improve hand-eye coordination.</li>
+        </ul>
+        </p>
+
+        <p><strong>Highlights and Novelty:</strong> The "GrowthGarden" introduces a <strong>living feedback
+                loop</strong>. Unlike standard quizzes, the user's success is physically represented by an evolving
+            ecosystem. The novelty lies in the <strong>Achievement Certificate</strong> system which generates a
+            personalized, high-fidelity binary PNG to celebrate micro-wins, fostering emotional resilience.</p>
+
+        <p><strong>Importance of Visualisation:</strong> Visualisation acts as a "cognitive bridge." By seeing the plant
+            grow taller with every correct answer, the child establishes a direct neural link between mathematical
+            success and positive environmental change, making the learning "sticky."</p>
+
+        <h2>2. Operations and React Implementation</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Operation Name</th>
+                    <th>Expected Output</th>
+                    <th>React Concepts Used</th>
+                    <th>Improvement to Application</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Visual Question Generation</td>
+                    <td>Random objects (apples/flowers) appearing for addition.</td>
+                    <td>useState, useEffect, useCallback</td>
+                    <td>Ensures every session is unique and prevent pattern-memorization, encouraging active thinking.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tactile Basket Submission</td>
+                    <td>Basket pulses and counts items dropped into it.</td>
+                    <td>Conditional Rendering, CSS Animations</td>
+                    <td>Provides immediate "tactile" feedback, helping autistic learners feel a sense of object
+                        permanence in math.</td>
+                </tr>
+                <tr>
+                    <td>Garden Growth Logic</td>
+                    <td>Plant evolves from Seedling to Tree based on score.</td>
+                    <td>State Management (Lifting State Up)</td>
+                    <td>Visualizes progress over time, reducing anxiety by showing that "even mistakes are part of the
+                        process."</td>
+                </tr>
+                <tr>
+                    <td>Achievement Capture</td>
+                    <td>A high-quality certificate PNG saved to user's device.</td>
+                    <td>Refs (useRef), External API (Canvas/Blob)</td>
+                    <td>Allows for tangible, offline recognition of success which boosts self-esteem and parent-child
+                        interaction.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Improvements for Autism Kids</h2>
+        <div class="highlight-box">
+            <p><strong>Memory Improvement:</strong> The use of consistent spatial placement for the "Basket" and
+                "Garden" builds muscle memory and visual recall of mathematical sums.</p>
+            <p><strong>Contextual Learning:</strong> By associating math with "Sunlight" and "Water," children learn
+                that mathematics is a tool for understanding and nurturing the world around them, not just a classroom
+                chore.</p>
+        </div>
+
+        <h2>4. Similar Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Description</th>
+                    <th>Features</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a class="url-link" href="https://magrid.education/">Magrid.education</a></td>
+                    <td>Language-independent math tool for neurodivergent learners.</td>
+                    <td>Sensory-friendly, language-free, visual logic training.</td>
+                </tr>
+                <tr>
+                    <td><a class="url-link" href="https://www.prodigygame.com/">Prodigy Game</a></td>
+                    <td>Gamified math adventure world.</td>
+                    <td>Battle-based math, massive world, avatar customization.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. Research Labs</h2>
+        <ul>
+            <li><strong>University of Alberta - Mathematical and Cognitive Development Lab:</strong> Investigating
+                number-line estimation in ASD.</li>
+            <li><strong>Dartmouth College - p2P Lab:</strong> Developing digital games for emotional resilience and
+                social confidence in autistic students.</li>
+            <li><strong>University of Tübingen:</strong> Researching the intersection of sensory processing and
+                language-independent math pedagogy.</li>
+        </ul>
+
+        <h2>6. Algorithms and Enhancement</h2>
+        <p><strong>Algorithms Used:</strong>
+        <ul>
+            <li><strong>Fisher-Yates Shuffle Variant:</strong> Used for generating randomized visual question patterns.
+            </li>
+            <li><strong>Binary-to-Blob Conversion:</strong> Logic to transform Base64 canvas data into stable PNG
+                headers for Windows compatibility.</li>
+        </ul>
+        </p>
+
+        <p><strong>Future Enhancements:</strong>
+        <ul>
+            <li><strong>AI Adaptive Difficulty:</strong> Adjusting the number range based on the child's response speed.
+                <em>(Required to prevent frustration and maintain the "Flow State".)</em></li>
+            <li><strong>Audio-Visual Synchrony:</strong> Adding calming binaural beats that sync with the plant's growth
+                pulse. <em>(Required for multisensory engagement and anxiety reduction.)</em></li>
+        </ul>
+        </p>
+    </div>
+</body>
+
+</html>

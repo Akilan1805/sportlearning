@@ -1,0 +1,409 @@
+<html>
+<head>
+<style>
+body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; margin: 40px; }
+h1 { font-size: 16pt; text-align: center; }
+h2 { font-size: 14pt; margin-top: 30px; }
+h3 { font-size: 12pt; margin-top: 20px; }
+table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+th, td { border: 1px solid black; padding: 8px; text-align: left; vertical-align: top; }
+th { background-color: #4472C4; color: white; font-weight: bold; }
+.code { font-family: Consolas, monospace; font-size: 10pt; background-color: #f5f5f5; }
+.file-ref { color: #0066cc; font-style: italic; }
+</style>
+</head>
+<body>
+
+<h1>Sports Learning Platform - React Concepts Documentation</h1>
+<p style="text-align: center;"><strong>Total Marks: 50</strong></p>
+
+<hr>
+
+<h2>1. About the Use Case</h2>
+<p>
+The scenario focuses on a child with Autism Spectrum Disorder (ASD). The user wants to learn sports concepts but struggles with traditional text-heavy instructions, requiring a visually driven approach. The child logs into the "Sports Learning Platform" and selects a sport module. After watching a simplified tutorial, the user takes the "Quiz" which presents visual questions. The system provides immediate feedback with gentle animations. The user earns points which are added to the Leaderboard, motivating the child to continue learning through interactive play.
+</p>
+
+<hr>
+
+<h2>2. React Concepts Table - BEFORE Forms Extension</h2>
+<p>Complete the table below adding your contribution:</p>
+
+<table>
+<tr>
+    <th style="width: 25%;">Concept</th>
+    <th style="width: 75%;">Code Proof/Screenshot</th>
+</tr>
+<tr>
+    <td><strong>Function Component</strong></td>
+    <td>
+        <span class="file-ref">File: Home.jsx (Lines 7-94)</span><br><br>
+        <span class="code">
+        function Home() {<br>
+        &nbsp;&nbsp;const [sports, setSports] = useState([]);<br>
+        &nbsp;&nbsp;const [loading, setLoading] = useState(true);<br>
+        &nbsp;&nbsp;const { user } = useAuth();<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="home-page"&gt;...&lt;/div&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }<br>
+        export default Home;
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Class Component</strong></td>
+    <td>
+        <span class="file-ref">Not used in Lab 1 (Only Function Components were used)</span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Event</strong></td>
+    <td>
+        <span class="file-ref">File: Login.jsx (Lines 33-46)</span><br><br>
+        <span class="code">
+        const handleSubmit = async (e) =&gt; {<br>
+        &nbsp;&nbsp;e.preventDefault();<br>
+        &nbsp;&nbsp;setError('');<br>
+        &nbsp;&nbsp;setLoading(true);<br>
+        &nbsp;&nbsp;try {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;await login(email, password);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;navigate('/');<br>
+        &nbsp;&nbsp;} catch (err) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;setError(err.message);<br>
+        &nbsp;&nbsp;}<br>
+        };
+        </span><br><br>
+        <span class="file-ref">JSX Event Binding (Line 61, 68, 80):</span><br>
+        <span class="code">
+        &lt;form onSubmit={handleSubmit}&gt;<br>
+        &lt;input onChange={(e) =&gt; setEmail(e.target.value)} /&gt;
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>State Management</strong></td>
+    <td>
+        <span class="file-ref">File: Login.jsx (Lines 8-12)</span><br><br>
+        <span class="code">
+        const [email, setEmail] = useState('');<br>
+        const [password, setPassword] = useState('');<br>
+        const [error, setError] = useState('');<br>
+        const [loading, setLoading] = useState(false);<br>
+        const [fact, setFact] = useState(null);
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Stateless Component</strong></td>
+    <td>
+        <span class="file-ref">File: Navbar.jsx (Lines 4-52)</span><br><br>
+        <span class="code">
+        function Navbar() {<br>
+        &nbsp;&nbsp;const { user, logout } = useAuth();<br>
+        &nbsp;&nbsp;// No internal complex state<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;nav className="navbar"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Link to="/"&gt;Home&lt;/Link&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Link to="/quiz"&gt;Quiz&lt;/Link&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Forms</strong></td>
+    <td>
+        <span class="file-ref">File: Login.jsx (Lines 61-89)</span><br><br>
+        <span class="code">
+        &lt;form onSubmit={handleSubmit}&gt;<br>
+        &nbsp;&nbsp;&lt;input type="email" value={email}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;onChange={(e) =&gt; setEmail(e.target.value)}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;placeholder="Enter your email" /&gt;<br>
+        &nbsp;&nbsp;&lt;input type="password" value={password}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;onChange={(e) =&gt; setPassword(e.target.value)} /&gt;<br>
+        &nbsp;&nbsp;&lt;button type="submit"&gt;Sign In&lt;/button&gt;<br>
+        &lt;/form&gt;
+        </span>
+    </td>
+</tr>
+</table>
+
+<hr>
+
+<h2>3. React Concepts Table - AFTER Forms Extension (GoalTracker.jsx)</h2>
+<p>Extended webpage with Forms - Sports Goal Tracker:</p>
+
+<table>
+<tr>
+    <th style="width: 25%;">Concept</th>
+    <th style="width: 75%;">Code Proof/Screenshot</th>
+</tr>
+<tr>
+    <td><strong>Function Component</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 4-14)</span><br><br>
+        <span class="code">
+        function ProgressBar({ progress, color }) {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="goal-progress-bar"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="goal-progress-fill"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style={{ width: `${progress}%`, background: color }}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;{progress}%&lt;/span&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Class Component</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 16-42)</span><br><br>
+        <span class="code">
+        class GoalStats extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;const { totalGoals, completedGoals } = this.props;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="goal-stats"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;{totalGoals}&lt;/span&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;{completedGoals}&lt;/span&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Event</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 72-88, 97-120)</span><br><br>
+        <span class="code">
+        // Input Change Handler<br>
+        const handleInputChange = (event) =&gt; {<br>
+        &nbsp;&nbsp;const { name, value } = event.target;<br>
+        &nbsp;&nbsp;setFormData(prev =&gt; ({ ...prev, [name]: value }));<br>
+        };<br><br>
+        // Form Submit Handler<br>
+        const handleSubmit = (event) =&gt; {<br>
+        &nbsp;&nbsp;event.preventDefault();<br>
+        &nbsp;&nbsp;if (validateForm()) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;setGoals(prev =&gt; [...prev, newGoal]);<br>
+        &nbsp;&nbsp;}<br>
+        };
+        </span><br><br>
+        <span class="file-ref">JSX Events (Lines 155, 168, 248):</span><br>
+        <span class="code">
+        &lt;form onSubmit={handleSubmit}&gt;<br>
+        &lt;input onChange={handleInputChange} /&gt;<br>
+        &lt;button onClick={() =&gt; handlePriorityClick('high')}&gt;
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>State Management</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 47-58)</span><br><br>
+        <span class="code">
+        const [formData, setFormData] = useState({<br>
+        &nbsp;&nbsp;goalTitle: '',<br>
+        &nbsp;&nbsp;sport: '',<br>
+        &nbsp;&nbsp;targetDate: '',<br>
+        &nbsp;&nbsp;difficulty: '',<br>
+        &nbsp;&nbsp;description: '',<br>
+        &nbsp;&nbsp;priority: 'medium'<br>
+        });<br>
+        const [goals, setGoals] = useState([]);<br>
+        const [errors, setErrors] = useState({});<br>
+        const [showSuccess, setShowSuccess] = useState(false);
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Stateless Component</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 4-14)</span><br><br>
+        <span class="code">
+        // No internal state - only receives props<br>
+        function ProgressBar({ progress, color }) {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div style={{ width: `${progress}%` }}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{progress}%<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Forms</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 155-290)</span><br><br>
+        <span class="code">
+        &lt;form onSubmit={handleSubmit}&gt;<br><br>
+        &nbsp;&nbsp;{/* Text Input - Line 161 */}<br>
+        &nbsp;&nbsp;&lt;input type="text" name="goalTitle"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;value={formData.goalTitle}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;onChange={handleInputChange} /&gt;<br><br>
+        &nbsp;&nbsp;{/* Select Dropdown - Line 189 */}<br>
+        &nbsp;&nbsp;&lt;select name="sport" onChange={handleInputChange}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="tennis"&gt;Tennis&lt;/option&gt;<br>
+        &nbsp;&nbsp;&lt;/select&gt;<br><br>
+        &nbsp;&nbsp;{/* Date Input - Line 204 */}<br>
+        &nbsp;&nbsp;&lt;input type="date" name="targetDate" /&gt;<br><br>
+        &nbsp;&nbsp;{/* Radio Buttons - Line 220 */}<br>
+        &nbsp;&nbsp;&lt;input type="radio" name="difficulty" value="beginner" /&gt;<br><br>
+        &nbsp;&nbsp;{/* Textarea - Line 255 */}<br>
+        &nbsp;&nbsp;&lt;textarea name="description" /&gt;<br><br>
+        &nbsp;&nbsp;{/* Range Slider - Line 285 */}<br>
+        &nbsp;&nbsp;&lt;input type="range" min="0" max="100" /&gt;<br><br>
+        &nbsp;&nbsp;&lt;button type="submit"&gt;Create Goal&lt;/button&gt;<br>
+        &lt;/form&gt;
+        </span>
+    </td>
+</tr>
+</table>
+
+<hr>
+
+<h2>4. Additional React Concepts (Hooks & Routing)</h2>
+
+<table>
+<tr>
+    <th style="width: 25%;">Concept</th>
+    <th style="width: 75%;">Code Proof/Screenshot</th>
+</tr>
+<tr>
+    <td><strong>useState Hook</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Line 1, 47-58)</span><br><br>
+        <span class="code">
+        import React, { useState } from 'react';<br>
+        const [formData, setFormData] = useState({...});<br>
+        const [goals, setGoals] = useState([]);
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>useEffect Hook</strong></td>
+    <td>
+        <span class="file-ref">File: Login.jsx (Lines 16-31)</span><br><br>
+        <span class="code">
+        useEffect(() =&gt; {<br>
+        &nbsp;&nbsp;if (user) { navigate('/'); }<br>
+        }, [user, navigate]);<br><br>
+        useEffect(() =&gt; {<br>
+        &nbsp;&nbsp;fetch(`${API_URL}/facts/${randomSport}`)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;.then(res =&gt; res.json())<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;.then(data =&gt; setFact(data));<br>
+        }, []);
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>useContext Hook</strong></td>
+    <td>
+        <span class="file-ref">File: AuthContext.jsx (Lines 110-116)</span><br><br>
+        <span class="code">
+        export function useAuth() {<br>
+        &nbsp;&nbsp;const context = useContext(AuthContext);<br>
+        &nbsp;&nbsp;if (!context) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;throw new Error('useAuth must be used within AuthProvider');<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;return context;<br>
+        }
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Routing (React Router)</strong></td>
+    <td>
+        <span class="file-ref">File: App.jsx (Lines 1, 36-104)</span><br><br>
+        <span class="code">
+        import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';<br><br>
+        &lt;Router&gt;<br>
+        &nbsp;&nbsp;&lt;Routes&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/login" element={&lt;Login /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/" element={&lt;Home /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/quiz" element={&lt;Quiz /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/goals" element={&lt;GoalTracker /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&lt;/Routes&gt;<br>
+        &lt;/Router&gt;
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Link Navigation</strong></td>
+    <td>
+        <span class="file-ref">File: Navbar.jsx (Lines 1, 25-36)</span><br><br>
+        <span class="code">
+        import { Link } from 'react-router-dom';<br><br>
+        &lt;Link to="/"&gt;Home&lt;/Link&gt;<br>
+        &lt;Link to="/quiz"&gt;Quiz&lt;/Link&gt;<br>
+        &lt;Link to="/leaderboard"&gt;Leaderboard&lt;/Link&gt;<br>
+        &lt;Link to="/goals"&gt;Goals&lt;/Link&gt;
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>useNavigate Hook</strong></td>
+    <td>
+        <span class="file-ref">File: Login.jsx (Line 14), Navbar.jsx (Line 6)</span><br><br>
+        <span class="code">
+        import { useNavigate } from 'react-router-dom';<br>
+        const navigate = useNavigate();<br>
+        navigate('/');
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Props</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 4, 16-20)</span><br><br>
+        <span class="code">
+        // Passing props:<br>
+        &lt;ProgressBar progress={goal.progress} color="#00d4ff" /&gt;<br>
+        &lt;GoalStats totalGoals={5} completedGoals={3} /&gt;<br><br>
+        // Receiving props:<br>
+        function ProgressBar({ progress, color }) { ... }<br>
+        const { totalGoals, completedGoals } = this.props;
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>Conditional Rendering</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 124, 148, 280)</span><br><br>
+        <span class="code">
+        {showSuccess && &lt;div&gt;Goal created successfully!&lt;/div&gt;}<br><br>
+        {goals.length > 0 && &lt;GoalStats ... /&gt;}<br><br>
+        {errors.goalTitle && &lt;span&gt;{errors.goalTitle}&lt;/span&gt;}
+        </span>
+    </td>
+</tr>
+<tr>
+    <td><strong>List Rendering (map)</strong></td>
+    <td>
+        <span class="file-ref">File: GoalTracker.jsx (Lines 190-195, 280-300)</span><br><br>
+        <span class="code">
+        {sportOptions.map(option =&gt; (<br>
+        &nbsp;&nbsp;&lt;option key={option.value} value={option.value}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{option.label}<br>
+        &nbsp;&nbsp;&lt;/option&gt;<br>
+        ))}<br><br>
+        {goals.map(goal =&gt; (<br>
+        &nbsp;&nbsp;&lt;div key={goal.id}&gt;{goal.goalTitle}&lt;/div&gt;<br>
+        ))}
+        </span>
+    </td>
+</tr>
+</table>
+
+<hr>
+<p style="text-align: center;"><em>End of Document</em></p>
+
+</body>
+</html>
